@@ -102,7 +102,16 @@
    - sudo nano /etc/lightdm/lightdm.conf
       - Edit this conf specifically for LightDM
       - Remember `sudo systemctl restart lightdm` to check.
- 
+    
+ - IPv4 TCP SYN Cookies should be enabled
+ - sysctl conf has numerous relevant and important configs
+
+ - Use  `ls -l` to check file permissions
+ - `-rw-r-----` should output for most important files (read/write for owner, read for owner group, and none for others)
+ - `sudo chmod 640 <file>` sets file permissions to `-rw-r-----`
+ - Ensure the main browser on a computer is secure
+ - Open the browser that is showin in the README (often chromium)
+ - Go to `settings > privacy/security` and turn on settings that block bad stuff
 
 ### Windows Configurations
 
@@ -123,6 +132,35 @@
 
 Do your own research~!!!
 
+Note: r=4, w=2, x=1; use combinations of these values for chmod
+
+#### More
+- Disable unnecessary file and printe sharing
+  - Open control panel -> network and sharing center -> select change advanced sharing settings -> under active network profile turn off printer sharing
+- Disabling Network Discovery is highly VM dependent. Only disable if the README says so
+
+#### Services -> Windows R (Type services.msc)
+- Telnet server
+- Remote regristry
+- Internet connection sharing
+- FTP server
+- SNMP/SNMPTrap Network Monitoring
+- Print Spooler
+- TapiSrv
+  - DISABLE ALL BY RIGHT CLICKING
+  - read me specific
+
+- Reminder these are only some important services
+
+#### Software, Services, and Files
+
+  
+
+
+
+
+
+- 
 
 
 ## Software, Services, and Files.
