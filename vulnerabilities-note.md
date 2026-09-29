@@ -154,13 +154,64 @@ Note: r=4, w=2, x=1; use combinations of these values for chmod
 
 #### Software, Services, and Files
 
-  
-
-
-
-
-
-- 
-
-
 ## Software, Services, and Files.
+- Windows: `settings -> apps -> installed apps`. click the 3 dots and uninstall
+- Linux: `sudo apt purge <package>` to delete a package
+- Common hacking tools are hydra, deluge, wireshark, ophcrack, johntheripper, nmap
+- Just like on Linux machines you will have to determine which packages should be deleted
+- Hacking tools should be deleted but also make sure its not in the README
+
+### Linux updates
+- `sudo apt update` will update the package list
+- `sudo apt upgrade` will install avaliable updates
+- use update then upgrade to run updates
+- `sudo apt autoremove` to clean unused packages
+- `sudo reboot` to reboot
+
+### Windows Updates
+- open settings
+- go to windows update and click check for updates
+- install any avaliable updates
+- restart the computer if prompted
+
+### Linux Services
+- The README will state critical services. do not remove these
+- you will need to figure which services should be there
+- common removals: unused mail services, non-critical services
+
+- `systemctl list-units --type=service --state=active`
+  - views the running services
+- `sudo apt purge <name>` or `sudo systemctl disable --now <name`
+  - delete or disable
+- `sudo systemctl start <name`
+   -start service
+### Linux Files
+- The README will say to delete probhibited media types
+- Delete MP3s
+
+### Windows Files
+- Delete same as Linux
+- Search using `Get-ChildItem` in powershell or voidtools everything file explorer is ass
+
+### Windows Misc
+- Right click guest user
+- Select rename
+- Type a new name
+- Press enter
+- Repeat for admin
+
+### Shared Folders
+- A folder that is accessible by others over the network
+- Go to `Computer Managment`
+- Dont delete money sign ones
+- Automatically created
+  - ADMIN$
+  - C$, D$, E$
+  - IPC$
+    - For communication
+- Make sure theres no confidential information like company secrets
+- Right click and press stop sharing on a user shared folder
+
+#### Creating one
+- Right click on whitespace and press new share
+    
