@@ -56,3 +56,29 @@
 - show vlan
 - show vtp status
 
+## Password Commands
+- `username <name> password <value>` - changes username and pass
+- `enable password <value` 
+- `enable secret <value>`
+- `service password-encryption`
+
+## IP Adressing
+- ipv4, ipv6
+- can be set manually or automatically
+- consist of an address, subnet mask, and default gateway
+- process called ANDing to know what network they belong to
+- default gateway is the outward route of the network (usually router)
+
+## Subnetting
+- creating sub-networks from a given network. borrows bits from the host portion of provided network
+- formula is 2^Y (y=borrowed bits needed)
+- passwords can be adjusted from the #(config) mode using `enable password` or `enable secret`
+- passwords are unencrypted and are encrypted with `service password-encryption`
+- secrets are always encrypted (wow didnt know that)
+
+## Banner Messages
+- banner messages warn unauthorized personnel about attempting to access the device
+- `banner motd`
+- use delimiter to type message
+
+
