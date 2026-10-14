@@ -1,6 +1,5 @@
-# turbo-engine-patpat27
-CyberPat checklist/repo for 2026-2027, team unnamed at the moment.
+# ***Enkephalin // P-9***
+### turbo-engine-patpat27
+CyberPatriots checklist/repo for 2026-2027.
 
-name ideas:
-- the firewall
-- heavenly restriction
+
