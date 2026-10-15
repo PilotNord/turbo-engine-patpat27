@@ -81,4 +81,38 @@
 - `banner motd`
 - use delimiter to type message
 
+## Saving Config files
+- config files store everything on the system
+- 2 files exist being `startup-config` and
 
+## VLAN Config
+- to access a switch remotely it must haven an IP address and a subnet mask
+- to give a switch an IP address a VLAN must be used
+- after assigning it an IP, the port must be opened
+
+## Basic Config
+- all the basic switch foniguration requirements also apply to routers
+- routers have additional requirements such as ip addresses and default gateways
+- routers do not use VLANs
+- interfaces are shut down by default. use `no shut` to activate
+- provide a desc for them to add info about the network
+- switches have interfaces but no ips
+- use ipv4 or ipv6 based on requirements
+- end devices and switches utilize default gateways to know where to route information
+- usually the default gateway is local router
+
+## Management Access
+- for switches to have remote access they need to have an IP address and a subnet mask
+- managment is controlled through vlan 1 by default with all ports being assigned to vlan 1
+- switch virtual interfaces are logical interfaes that dont show up until a device is connected to the vlan
+- you should use a vlan aside from vlan 1
+
+## SVI config commands
+- `S1# configure terminal` enter global config mode
+- `S1(config)# interface vlan 99` enter the SVI's interface configuration mode
+- `S1(config-if)# ip address 10.0.0.2 255.255.255.0`  configure ipv4
+- `S1(config-if)# ipv6 address 2001:db8:acd:1::1/64`
+- `S1(config-if)# no shutdown` - enables interface
+- `S1(config-if)# end` - returns to priveleged EXEC mode
+- `S1# copy running-config startup-config` saves config
+- `S1(config)# ip-default-gateway 10.0.0.1`
