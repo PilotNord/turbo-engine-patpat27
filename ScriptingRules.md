@@ -1,4 +1,4 @@
 # Scripting Rules
-- You can use the internet
-- Dont paste your entire shit into AI
+- You can use the internet.
+- Dont paste everything into AI.
 
