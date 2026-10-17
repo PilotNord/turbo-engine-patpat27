@@ -1,4 +1,12 @@
-# General Checklist
+# WINDOWS General Checklist
+
+Simply treat this like a general reminder, I guess, since you can use Google responsibly anyway.
+
+This checklist is sectioned off pretty well, but remember to look up things when necessary.
+
+Tick stuff off mentally since Github is not good for that :p
+
+
 
 ## Initial Start
 
@@ -13,7 +21,7 @@
   - Use a virtual notepad, spreadsheet, or similar
   - Not completely necessary but useful for keeping track
 
-## Windows
+## Windows Time, I love Bill Gates.
 
 ### TL;DR?
 - [ ] *All right, you're lazy.*
