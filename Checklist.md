@@ -1,83 +1,86 @@
 # General Checklist
-## Typical--
 
-- [ ] Be prepared, remember you can use the Internet.
-- [ ] Input the correct team ID(probably should have already had it)
-- [ ] First thing is to **read the README(of the VM)**
-* Has most issues, but you also have to know some things.
-- [ ] Probably begin on the forensics *first,* to prevent issues later.
-* Can use Google and AI, *carefully*
-- [ ] Maybe *take notes.* Commands done, users, etc etc
-* Do this on a virtual notepad or spreadsheet.
+## Initial Setup
+
+- [ ] Be prepared; remember you can use the Internet.
+- [ ] Confirm the correct team ID (this should already be known).
+- [ ] Read the VM README first.
+  - It contains the most important details and required configuration requirements.
+- [ ] Start with forensics first to avoid issues later.
+  - You can use Google and AI carefully, but verify findings.
+- [ ] Take notes throughout the process.
+  - Record commands used, created/disabled users, and important changes.
+  - Use a virtual notepad, spreadsheet, or similar tool.
 
 ## Windows
+
 ### User Management
 
-- [ ] Open Admin Tools and then Computer Management
-- [ ] **Disable** users through Local Users and Groups(Users folder)
-- [ ] Add/remove users from Admin group through Groups folder(admin privileges)
-- [ ] Create new groups if asked to.
-- [ ] PASSWORDS for ALL users through Control Panel, "manage other accounts"
-- [ ] "Must change password on next logon" checked.
+- [ ] Open Administrative Tools, then Computer Management.
+- [ ] Disable users through Local Users and Groups > Users.
+- [ ] Add or remove users from the Administrators group through Groups > Administrators.
+- [ ] Create new groups if required.
+- [ ] Set passwords for all users through Control Panel > Manage Accounts.
+- [ ] Ensure the setting "User must change password at next logon" is enabled.
 
+### Password Configuration
 
-### Password Configs
+- [ ] Follow the password policy outlined in the README for the VM.
+  - Check the README carefully; requirements may vary.
+  - Typical requirements include:
+    - Enforce password history: 5 passwords
+    - Maximum password age: 90 days
+    - Minimum password age: 30 days
+    - Minimum password length: 12 characters
+    - Password complexity requirements: enabled
+    - Store password encryption: all users disabled
+  - Configure these settings through Local Security Policy > Password Policy.
 
-- [ ] Follow password policy as outlined in README(again, the VM one)
-* Generally(but not always, read the README!!!):
-  * Enforce pass history (5 pass)
-  * Max pass age(90 days)
-  * Min pass age(30 days)
-  * Min length(12 chars)
-  * Complexity requirements(enabled)
-  * Store pass encryption(all users disabled)
-  * **Change all this through Password Policy in Local Security Policy GUI**
+- [ ] Review account policies as required by the README.
+  - Typical recommendations include:
+    - Account lockout duration: 30 minutes
+    - Account lockout threshold: 5 invalid attempts
+    - Reset account lockout counter after: 30 minutes
+  - Configure these settings through Local Security Policy > Account Lockout Policy.
 
- - [ ] Account policies as well(according to README)
-* Generally,
-  * Account lockout duration (30 minutes)
-  * Account lockout threshold (5 invalid)
-  * Reset account lockout counter after (30 minutes)
-  * **Change through account lockout policy, Local Security Policy**
+- [ ] Set the audit policy through Local Security Policy.
+  - Configure all relevant policies to Success and Failure.
+- [ ] Check the README for any additional changes or exceptions.
 
-- [ ] Audit Policy through audit policy in Local Security Policy, all set to **(Success/Failure)**
-- [ ] Most changes can be found in README.
+### Security Options
 
-- [ ] In Security Options of Local Security Policy...
-- [ ] Do not require CTRL ALT DEL *disabled*
-- [ ] *Enable* Do Not Display Last Username At Sign In
-- [ ] Disable and rename Guest and Administrator accounts (literal names)
-  - [ ] Just like any other user.
+- [ ] Review settings in Local Security Policy > Security Options.
+- [ ] Disable "Do not require CTRL+ALT+DEL".
+- [ ] Enable "Do not display last username at sign in".
+- [ ] Disable and rename the Guest and Administrator accounts.
+  - Treat them like any other user account.
+- [ ] Disable Remote Assistance by unchecking "Do not allow remote connections to this computer."
+- [ ] Turn off file and printer sharing in Advanced Sharing Settings.
+- [ ] Determine whether Network Discovery should be disabled.
 
-- [ ] "Do not allow remote connections to this computer," uncheck Remote Assistance.
-- [ ] Turn file and printer sharing OFF in Advanced Sharing Settings.
-- [ ] Check whether Network Discovery should be disabled or not.
+### Services and Security Hardening
 
-Unless README otherwise states...
+Unless the README says otherwise:
+
 - [ ] Disable Telnet Server
 - [ ] Disable Remote Registry
 - [ ] Disable Internet Connection Sharing
 - [ ] Disable FTP Server
-- [ ] Disable SNMP/SNMPTrap Network Monitoring
-- [ ] Disable Print Spoolers
+- [ ] Disable SNMP/SNMP Trap Network Monitoring
+- [ ] Disable Print Spooler
 - [ ] Disable TapiSrv
+- [ ] Use services.msc to disable unnecessary services.
 
-- [ ] services.msc for disabling unnecessary services.
+### Software and Installed Applications
 
-
-### Software and Stuff (Installed Apps)
-- [ ] Check which packages need to be deleted or not. README
-- [ ] Hacking tools, purge 'em!
-- [ ] Update necessary apps as stated in README
-- [ ] Update Windows
-- [ ] ***DOWNLOAD UPDATES,*** do **NOT** install them yet.
-* It'll take too, too long! Do that during *lunch!*
-
-- [ ] Delete prohibited media files stated in README.
-* Use search, Get-ChildItem, void tools everything, WizTree, even File Explorer
-
-- [ ] Check for any unnecessary shared folders, unless README wants them.
-- [ ] Edit them through Computer Management.
-* Default shares have a $
- 
-
+- [ ] Check which packages should be removed or retained according to the README.
+- [ ] Remove hacking tools and other prohibited software.
+- [ ] Update required applications as specified in the README.
+- [ ] Update Windows.
+- [ ] Download updates, but do not install them yet.
+  - This can take too long; do it during lunch if needed.
+- [ ] Delete prohibited media files as specified in the README.
+  - Use search tools, Get-ChildItem, void tools, WizTree, or File Explorer.
+- [ ] Check for any unnecessary shared folders unless the README requires them.
+- [ ] Edit shared folders through Computer Management.
+  - Default shares may include a `$` suffix.
