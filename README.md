@@ -4,4 +4,9 @@
 
 <h1 align="center">Enkephalin // P-9</h1>
 <p align="center"><strong>turbo-engine-patpat27</strong></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PilotNord/turbo-engine-patpat27/main/enkpehalin.webp" alt="Enkephalin mascot" width="240" />
+</p>
+
 <p align="center">CyberPatriots checklist / repo for 2026–2027.</p>
