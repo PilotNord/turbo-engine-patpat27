@@ -15,6 +15,18 @@
 
 ## Windows
 
+### TL;DR?
+- [ ] *All right, you're lazy.*
+- [ ] README first.
+- [ ] Change users and groups, disable, add, edit.
+- [ ] Add or change passes
+- [ ] Password policies should be fixed
+- [ ] Change system, security policies
+- [ ] Enable/disable necessary services
+- [ ] Secure software by updating/removing/setting them
+- [ ] Remove bad programs and media.
+- [ ] Run updates during lunch.
+
 ### User Management
 
 - [ ] Open Administrative Tools, then Computer Management
