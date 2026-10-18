@@ -19,21 +19,6 @@
 
 <p align="center">CyberPatriots checklist / repo for 2026–2027.</p>
 
----
 
-## About
-
-This repository is the CyberPatriots checklist and resources for team Enkephalin (P-9). The README has been restyled for clarity and to include a convenient link to the Wikipedia article about Enkephalins.
-
-## Quick links
-
-- Wikipedia: [Enkephalin](https://en.wikipedia.org/wiki/Enkephalin)
-- Repository: https://github.com/PilotNord/turbo-engine-patpat27
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome. Please open issues or pull requests on GitHub.
-
----
-
-*README updated to include a Shields.io badge linking to the Wikipedia page and overall formatting improvements.*
+### About
+We love computer and brain fluid, huzzah!
