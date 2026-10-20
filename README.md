@@ -3,7 +3,6 @@
 </p>
 
 <h1 align="center">Enkephalin // P-9</h1>
-<p align="center"><strong>turbo-engine-patpat27</strong></p>
 
 <p align="center">
   <a href="https://en.wikipedia.org/wiki/Enkephalin" target="_blank" rel="noopener noreferrer">
