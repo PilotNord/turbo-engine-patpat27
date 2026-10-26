@@ -96,6 +96,7 @@ Unless the README says otherwise:
 
 - [ ] Check which packages should be removed or not according to the README.
 - [ ] Remove hacking tools and unwanted software
+  - [ ] Apache, NGINX, johntheripper, nmap, ophcrack, etc
 - [ ] Update required applications as specified in README
 - [ ] Update Windows--BUT!
 - [ ] Download updates, but do not install them yet.
