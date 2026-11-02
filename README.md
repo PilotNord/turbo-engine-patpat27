@@ -21,3 +21,4 @@
 
 ### About
 We love computer and brain fluid, huzzah!
+dude we need to organize our flippin notes -V
