@@ -138,10 +138,10 @@ You can use `cat` or a text editor like `vim`
 - [ ] README has critical services.
 - [ ] Install UFW for firewall if needed! Start it.
 - [ ] Edit config files like SSH, FTP, and Lightdm
-    * look at `linux week 7.md` for sum configs
+    * look at `linux week 8.md` for sum configs
 - [ ] Check Sudoers.d and make sure values look like default
     * use `visudo` to actually do anything, as nano wont work
-    * more info at `linux week 7.md`
+    * more info at `linux week 8.md`
 
 
 ### Software and Media
