@@ -70,8 +70,16 @@
     - `greeter-show-manual-login=true`
     - `autologin-user=none`
 ## Sudoers
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20190917053948/Screenshot-from-2019-09-17-05-07-53.png" width="250px">
+
 - whole lotta fluff
+- cant use nano, use `visudo`
 - few lines set privileges for the root user, admin group, and sudo group
 - they are default and normal to have
 ### what to look out for!
 - the `root`, `%admin`, and `%sudo` should look like the default (`ALL` is good to have while `NOPASSWD` values are insecure)
+### Sudoers.d
+- there is also a dir at `/etc/sudoers.d`
+- `sudoers.d` is typically empty by default
+- check the dir with `ls -l /etc/sudoers.d`
+- 
