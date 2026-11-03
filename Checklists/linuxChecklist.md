@@ -133,9 +133,15 @@ You can use `cat` or a text editor like `vim`
     * Regularly update and patch system
       * Like, regularly run `sudo apt update` and then `sudo apt upgrade`
     * Backup often.
-    
+- [ ] Check malicious Crontab entries
+    * usually python files
 - [ ] README has critical services.
 - [ ] Install UFW for firewall if needed! Start it.
+- [ ] Edit config files like SSH, FTP, and Lightdm
+    * look at `linux week 7.md` for sum configs
+- [ ] Check Sudoers.d and make sure values look like default
+    * use `visudo` to actually do anything, as nano wont work
+    * more info at `linux week 7.md`
 
 
 ### Software and Media
