@@ -4,13 +4,13 @@ Simply treat this like a general reminder, I guess, since you can use Google res
 
 This checklist is sectioned off pretty well, but remember to look up things when necessary.
 
-Tick stuff off mentally since Github is not good for that :p
+Tick stuff off mentally since GitHub is not good for that :p
 
 
 
 ## Initial Start
 
-- [ ] Be prepared remember you can use the Internet.
+- [ ] Be prepared: remember you can use the Internet.
 - [ ] Confirm the correct team ID (this should already be known).
 - [ ] Read the VM README first.
   - Important!!!!!
