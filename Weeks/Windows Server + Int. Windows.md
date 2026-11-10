@@ -5,7 +5,7 @@
 - Most Forensics are low-key easy IF you search w/google correctly
 - DELETE ANYTHING MALICIOUS AFTER FORENSICS IS COMPLETE
 ### Windows Forensic 1
-a backdoor running on this machine under "bd". What port is this backdoor configured to listen on?
+A backdoor running on this machine under "bd". What port is this backdoor configured to listen on?
 ### 2
 A .exe file makes a goose run around. What is the absolute path to it?
 
