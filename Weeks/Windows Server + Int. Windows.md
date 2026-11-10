@@ -64,3 +64,42 @@ To access the rules section, open Advanced Settings in WDF
 New rule > select [program] > Block/allow connection > skip profiles > give name
 ## Blocking a port
 Outbound rules > new rule > port and next > enter port # > block/allow communication > all profiiles > give name > finish
+## More port info
+sometimes you need to find what door a backdoor is on, use commands in powershell
+netstat -ano | findstr LISTEN
+need help? look up netsatt command prompts and go to microsoft website
+# Intro to Active Directory
+## Active Directory
+1. Windows Domains
+Domains are a group of users/computers managed by a business, used fopr ease of sharing user info and security policies
+2. Active Directory
+An application that is a can
+3.
+## Active Directory domain services
+- catalogue of info of all objects. likes users or machines
+- you can look up objects, find attributes, and modify them
+- Security principles are objects
+
+## Active directory users
+- Two types: people, real beings and services
+- Services only get certain permissions
+## Active directory users and Computers
+Every computer that jooin domain will havae a machine object with $
+by default all machines that are on a domain will be put in container called computers
+## Security Groups
+- used to manage users and machines
+- made by default to grant privileges
+- scope says which users and where: Local, Domain Local, Global, Universal
+- global is what we focus on
+IMPORTANT GROUPS
+Domain Admins
+- admin over domain
+Server Operators
+- Administer DCs
+Backup Operators
+- Access any file ignorign permissions
+- preform data backups
+Account Operators
+- create/modify other accounts in domain
+Domain users/computers/controllers
+- existing users, computer, DCs on domain
