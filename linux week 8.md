@@ -83,3 +83,40 @@
 - `sudoers.d` is typically empty by default
 - check the dir with `ls -l /etc/sudoers.d`
 - 
+
+
+-----
+
+### GDM3 Configs
+
+- Changes apply with `sudo dpkg-reconfigure gdm3` then `sudo reboot`
+- `restart guest` in VMWare to fix login loop
+- Ctrl + Alt + F3 opens a terminal to fix configs, if all else fails.
+
+### Init.d
+* /etc/init.d is the directory to be checking for malicious scripts.
+- It is used for shell scripts to manage system services.
+- It can help you find services to delete as well. Scripts present here(like vsftpd) indicate it is garbage.
+
+### Crontab Checks
+
+* `sudo ls /var/spool/cron/crontabs` check for files here to look at crontabs
+* `sudo crontab -u {username} -l` to check user's crontab
+  * Consider scripting THIS.
+* `sudo crontab -e` to check root crontab
+
+### Account Lockout Policy
+
+* /etc/security/faillock.conf
+* Set:
+  * deny = 3
+  * fail_interval = 900
+  * Unlock_time = 600
+
+* `sudo nano /etc/pam.d/common-account` to edit common account.
+* `account required` then `pam_permit.so` -> `pam_faillock.so`
+* `auth required` same as above.
+
+### Port Stuff
+* `sudo ss -ln` `sudo ss -tulnp` `sudo lsof -i -n -P` varied useful commands
+
