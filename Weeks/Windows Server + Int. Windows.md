@@ -10,8 +10,8 @@ A backdoor running on this machine under "bd". What port is this backdoor config
 A .exe file makes a goose run around. What is the absolute path to it?
 
 ## Helpful Apps
-- Voidtools Everything: finds things much faster than goober ahh file explorer
-- Malwarebytes: can help identify bad things: niche and will flag scoring system, DO NOT DELETE
+- Voidtools Everything: finds things much faster than goober ahh File Explorer
+- Malwarebytes: can help identify bad things; niche and will flag scoring system; DO NOT DELETE
 - TCPView: allows users to close connections manually and is useful for identifying remote access points on a VM
 - Sigcheck: checks if files have a valid digital signature
 Commands:
@@ -65,27 +65,27 @@ New rule > select [program] > Block/allow connection > skip profiles > give name
 ## Blocking a port
 Outbound rules > new rule > port and next > enter port # > block/allow communication > all profiiles > give name > finish
 ## More port info
-sometimes you need to find what door a backdoor is on, use commands in powershell
+Sometimes you need to find what door a backdoor is on; use commands in PowerShell
 netstat -ano | findstr LISTEN
-need help? look up netsatt command prompts and go to microsoft website
+need help? Look up netstat command prompts and go to the Microsoft website
 # Intro to Active Directory
 ## Active Directory
 1. Windows Domains
-Domains are a group of users/computers managed by a business, used fopr ease of sharing user info and security policies
+Domains are a group of users/computers managed by a business, used for ease of sharing user info and security policies
 2. Active Directory
 An application that is a can
 3.
 ## Active Directory domain services
-- catalogue of info of all objects. likes users or machines
+- catalogue of info of all objects, like users or machines
 - you can look up objects, find attributes, and modify them
-- Security principles are objects
+- Security principals are objects
 
-## Active directory users
-- Two types: people, real beings and services
+## Active Directory users
+- Two types: people, real beings, and services
 - Services only get certain permissions
-## Active directory users and Computers
-Every computer that jooin domain will havae a machine object with $
-by default all machines that are on a domain will be put in container called computers
+## Active Directory Users and Computers
+Every computer that joins a domain will have a machine object with $
+By default, all machines that are on a domain will be put in a container called Computers
 ## Security Groups
 - used to manage users and machines
 - made by default to grant privileges
@@ -97,9 +97,9 @@ Domain Admins
 Server Operators
 - Administer DCs
 Backup Operators
-- Access any file ignorign permissions
-- preform data backups
+- Access any file ignoring permissions
+- perform data backups
 Account Operators
 - create/modify other accounts in domain
 Domain users/computers/controllers
-- existing users, computer, DCs on domain
+- existing users, computers, DCs on domain
