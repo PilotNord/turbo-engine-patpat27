@@ -28,7 +28,6 @@
 
 <p align="center">◆ ━━━━━━━━━━━━━━━━━━━━ ◆</p>
 
-<p align="center"> Checklists </p>
-<p align="center"> https://pilotnord.github.io/turbo-engine-patpat27/Checklists/CyPat_Linux_General_Checklist.html </p>
-<p align="center"> https://pilotnord.github.io/turbo-engine-patpat27/Checklists/CyPat_Windows_General_Checklist.html </p>
-
+<p align="center">Checklists</p>
+<p align="center"><a href="https://pilotnord.github.io/turbo-engine-patpat27/Checklists/CyPat_Linux_General_Checklist.html">Linux General Checklist</a></p>
+<p align="center"><a href="https://pilotnord.github.io/turbo-engine-patpat27/Checklists/CyPat_Windows_General_Checklist.html">Windows General Checklist</a></p>
