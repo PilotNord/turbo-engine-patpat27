@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyPat Windows General Checklist</title>
+  <style>
+    :root {
+      --bg: #140f12;
+      --card: #1c1519;
+      --text: #f0e6e9;
+      --muted: #a8989e;
+      --accent: #c41e3a;
+      --accent-light: #3a1a22;
+      --border: #3a2a30;
+      --danger: #e11d48;
+      --warn: #d97706;
+      --success: #c41e3a;
+      --gold: #c9a227;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 0 1rem 3rem;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2a0f16, #1a0a0e 60%, #0f080a);
+      color: white;
+      padding: 1.5rem 1.5rem;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 18px rgba(196, 30, 58, 0.25);
+      border-bottom: 1px solid #4a1a24;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    header .subtitle {
+      margin: 0.35rem 0 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    nav.toc h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    nav.toc ol {
+      margin: 0;
+      padding-left: 1.25rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+
+    nav.toc a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav.toc a:hover { color: var(--gold); text-decoration: underline; }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    section h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.25rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.4rem;
+    }
+
+    section h3 {
+      margin: 1.25rem 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
+
+    .note, .warn, .important {
+      border-left: 4px solid;
+      padding: 0.6rem 0.9rem;
+      margin: 0.75rem 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+    }
+
+    .note { background: #241018; border-color: var(--accent); }
+    .warn { background: #2a1c0a; border-color: var(--warn); }
+    .important { background: #2a1018; border-color: var(--danger); font-weight: 500; }
+
+    ul.checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    ul.checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #2a1a20;
+    }
+
+    ul.checklist li:last-child { border-bottom: none; }
+
+    ul.checklist input[type="checkbox"] {
+      margin-top: 0.3rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    ul.checklist label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    ul.checklist li.done label {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    code, .cmd {
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      background: #2a1a20;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.88em;
+      color: #f0d0d8;
+    }
+
+    pre {
+      background: #0c080a;
+      color: #e8d0d6;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      border: 1px solid var(--border);
+    }
+
+    pre code { background: none; color: inherit; padding: 0; }
+
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #1a1216;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .progress-bar .bar {
+      flex: 1;
+      height: 8px;
+      background: #2a1a20;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b1528, var(--accent));
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .progress-bar .count {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 4.5rem;
+      text-align: right;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    button.secondary {
+      background: #2a1a20;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    button:hover { filter: brightness(1.1); }
+
+    #completion {
+      display: none;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      padding: 1.75rem 1.5rem;
+      background: linear-gradient(180deg, #241018, #1a0e12);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      animation: popIn 0.45s ease;
+      box-shadow: 0 0 24px rgba(196, 30, 58, 0.25);
+    }
+
+    #completion.show {
+      display: block;
+    }
+
+    #completion img {
+      max-width: 220px;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    }
+
+    #completion p {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    #completion .sub {
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    @media print {
+      body { background: white; color: #111; padding: 0; }
+      .progress-bar, .actions, nav.toc, button { display: none !important; }
+      section { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+      header { background: #1a0a0e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      nav.toc ol { columns: 1; }
+      header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar">
+    <div class="bar"><div class="fill" id="progressFill"></div></div>
+    <div class="count" id="progressCount">0 / 0</div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>WINDOWS General Checklist</h1>
+      <p class="subtitle">Team Enkephalin · CyPat</p>
+    </header>
+
+    <div class="actions">
+      <button onclick="window.print()">Print / Save as PDF</button>
+      <button class="secondary" onclick="clearAll()">Clear all checks</button>
+      <button class="secondary" onclick="checkAll()">Check all</button>
+    </div>
+
+    <nav class="toc">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#initial">Initial Start</a></li>
+        <li><a href="#tldr">TL;DR Quick Path</a></li>
+        <li><a href="#forensics">Forensics</a></li>
+        <li><a href="#users">User Management</a></li>
+        <li><a href="#password">Password &amp; Account Policy</a></li>
+        <li><a href="#security">Security Options</a></li>
+        <li><a href="#services">Services &amp; Hardening</a></li>
+        <li><a href="#software">Software &amp; Media</a></li>
+      </ol>
+    </nav>
+
+    <div class="note">
+      <strong>How to use:</strong> Treat this as a general reminder. Always check the current VM README first. Checkboxes are saved in your browser so progress persists. For competition, prioritize forensics and the README.
+    </div>
+
+    <!-- ==================== INITIAL START ==================== -->
+    <section id="initial">
+      <h2>Initial Start</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="i1">
+          <label for="i1">Be prepared — remember you can use the Internet.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i2">
+          <label for="i2">Confirm the correct team ID (this should already be known).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i3">
+          <label for="i3"><strong>Read the VM README first.</strong> Important!!!!!</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i4">
+          <label for="i4">Start with forensics first to avoid issues later. They often contain useful information.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i5">
+          <label for="i5">Take notes throughout the process. Record commands used, created/disabled users, and important changes. Use a virtual notepad, spreadsheet, or similar.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i6">
+          <label for="i6"><em>Additional:</em> Download useful tools early (Everything / Voidtools, etc.) if the README or forensics suggest them.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== TL;DR ==================== -->
+    <section id="tldr">
+      <h2>Windows Time — I love Bill Gates. TL;DR?</h2>
+      <div class="warn">
+        <strong>All right, you’re lazy.</strong> Here’s the high-level path. Still read the detailed sections.
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1">
+          <label for="t1">README first.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t2">
+          <label for="t2">Do Forensics and download Everything / Voidtools if helpful.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t3">
+          <label for="t3">Change users and groups — disable, add, edit.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t4">
+          <label for="t4">Add or change passwords.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t5">
+          <label for="t5">Password policies should be fixed.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t6">
+          <label for="t6">Change system / security policies.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t7">
+          <label for="t7">Enable / disable necessary services.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t8">
+          <label for="t8">Secure software by updating / removing / configuring them.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t9">
+          <label for="t9">Remove bad programs and media.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t10">
+          <label for="t10">Run updates during lunch (or a controlled time).</label>
+        </li>
+      </ul>
+      <div class="important">
+        <strong>Windows update tip:</strong> You can download updates early, but avoid installing them in the middle of scoring if they will take a long time or reboot the machine unexpectedly.
+      </div>
+    </section>
+
+    <!-- ==================== FORENSICS ==================== -->
+    <section id="forensics">
+      <h2>Forensics</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="f1">
+          <label for="f1">Read and complete the forensic questions first. They often point to other vulnerabilities or give useful context.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f2">
+          <label for="f2">Use search tools (Everything / Voidtools, File Explorer search, PowerShell <code>Get-ChildItem</code>) to locate files, media, or clues mentioned in the questions.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f3">
+          <label for="f3">Look for hidden or unusual files, recent activity, logs, and anything the README or questions reference.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f4">
+          <label for="f4"><em>Additional:</em> Check Event Viewer and recent user activity if the questions require it.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== USER MANAGEMENT ==================== -->
+    <section id="users">
+      <h2>User Management</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="u1">
+          <label for="u1">Open <strong>Administrative Tools → Computer Management</strong> (or <code>lusrmgr.msc</code>).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u2">
+          <label for="u2">Disable or remove unauthorized users through <strong>Local Users and Groups → Users</strong>. All users that are not in the README should be removed or disabled.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u3">
+          <label for="u3">Add or remove users from the Administrators group through <strong>Groups → Administrators</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u4">
+          <label for="u4">Create new groups if the README requires them.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u5">
+          <label for="u5">Set strong passwords for all users (Control Panel → User Accounts, or Computer Management). Prefer one secure password pattern that meets the policy.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u6">
+          <label for="u6">Ensure “User must change password at next logon” is set where appropriate / required by the README.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u7">
+          <label for="u7"><em>Additional:</em> Never leave “Password never expires” checked unless the README explicitly allows it.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u8">
+          <label for="u8"><em>Additional:</em> Disable or rename the built-in Guest and Administrator accounts (see Security Options section).</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== PASSWORD & ACCOUNT POLICY ==================== -->
+    <section id="password">
+      <h2>Password &amp; Account Policy</h2>
+      <div class="note">
+        Always check the README for the exact required values. The numbers below are common defaults used in many images.
+      </div>
+
+      <h3>Password Policy (Local Security Policy → Password Policy)</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p1">
+          <label for="p1">Enforce password history: <strong>5</strong> (or as README states).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p2">
+          <label for="p2">Maximum password age: <strong>90 days</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p3">
+          <label for="p3">Minimum password age: <strong>30 days</strong> (or the value the README requires — some images use lower).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p4">
+          <label for="p4">Minimum password length: <strong>12 characters</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p5">
+          <label for="p5">Password must meet complexity requirements: <strong>Enabled</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p6">
+          <label for="p6">Store passwords using reversible encryption: <strong>Disabled</strong>.</label>
+        </li>
+      </ul>
+
+      <h3>Account Lockout Policy</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p7">
+          <label for="p7">Account lockout duration: <strong>30 minutes</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p8">
+          <label for="p8">Account lockout threshold: <strong>5</strong> invalid attempts.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p9">
+          <label for="p9">Reset account lockout counter after: <strong>30 minutes</strong>.</label>
+        </li>
+      </ul>
+
+      <h3>Audit Policy</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p10">
+          <label for="p10">Set Audit Policy (Local Security Policy → Audit Policy) — configure relevant policies to <strong>Success and Failure</strong> as required by the README / scoring.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== SECURITY OPTIONS ==================== -->
+    <section id="security">
+      <h2>Security Options</h2>
+      <div class="important">
+        Review settings in <strong>Local Security Policy → Security Options</strong>. These are frequently scored.
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="s1">
+          <label for="s1">Disable “Do not require CTRL+ALT+DEL” (force the secure attention sequence).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s2">
+          <label for="s2">Enable “Do not display last user name at sign-in”.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s3">
+          <label for="s3">Disable and/or rename the Guest and Administrator accounts. Treat them like any other user account when editing.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s4">
+          <label for="s4">Disable Remote Assistance (uncheck “Allow remote connections to this computer” / related settings).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s5">
+          <label for="s5">Turn off File and Printer Sharing in Advanced Sharing Settings (unless the README requires it).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s6">
+          <label for="s6">Check whether Network Discovery should be disabled.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s7">
+          <label for="s7"><em>Additional:</em> Review other Security Options for anything that looks insecure (anonymous access, null sessions, etc.) and harden according to the README.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section id="services">
+      <h2>Services &amp; Security Hardening</h2>
+      <div class="note">
+        Unless the README explicitly says a service must stay running, the following are commonly disabled.
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="v1">
+          <label for="v1">Disable <strong>Telnet Server</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v2">
+          <label for="v2">Disable <strong>Remote Registry</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v3">
+          <label for="v3">Disable <strong>Internet Connection Sharing</strong>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v4">
+          <label for="v4">Disable <strong>FTP Server</strong> (and related FTP services).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v5">
+          <label for="v5">Disable <strong>SNMP</strong> / SNMP Trap.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v6">
+          <label for="v6">Disable <strong>Print Spooler</strong> (unless printing is required).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v7">
+          <label for="v7">Disable <strong>TapiSrv</strong> (Telephony).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v8">
+          <label for="v8">Use <code>services.msc</code> to review and disable any other unnecessary services.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="v9">
+          <label for="v9"><em>Additional:</em> Confirm Windows Firewall / Windows Security is enabled and sensible rules are in place.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== SOFTWARE & MEDIA ==================== -->
+    <section id="software">
+      <h2>Software &amp; Media</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="m1">
+          <label for="m1">Check which packages / applications should be removed according to the README.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m2">
+          <label for="m2">Remove hacking tools and unwanted software (examples frequently seen):
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li>Apache / NGINX</li>
+              <li>John the Ripper</li>
+              <li>nmap / Zenmap</li>
+              <li>Ophcrack</li>
+              <li>Wireshark (if not required)</li>
+              <li>Other prohibited tools listed in the README</li>
+            </ul>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="m3">
+          <label for="m3">Update required applications as specified in the README (Settings → Apps → Installed apps, or the application’s own updater).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m4">
+          <label for="m4">Windows Updates: download them, but install carefully — prefer doing the actual install during a break so you don’t lose time or get forced reboots mid-scoring.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m5">
+          <label for="m5">Delete prohibited media files (music, videos, images, archives, etc.) as specified in the README. Use Everything, File Explorer search, PowerShell <code>Get-ChildItem</code>, or tools like WizTree.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m6">
+          <label for="m6">Check for unnecessary shared folders (Computer Management → Shared Folders). Default admin shares often end with <code>$</code>. Remove or disable shares that are not required by the README.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m7">
+          <label for="m7"><em>Additional:</em> Review default apps / file associations if the README mentions them (Settings → Apps → Default apps).</label>
+        </li>
+      </ul>
+    </section>
+
+    <div id="completion">
+      <img src="team_enkephalin.png" alt="Team Enkephalin celebration">
+      <p>Dammmm!</p>
+      
+    </div>
+
+    <footer>
+      <p>CyPat Windows General Checklist — Team Enkephalin // P-9</p>
+      <p>Always verify against the current competition README and scoring categories. Hail Tux…and Bill, I guess.</p>
+    </footer>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'cypat-windows-checklist-v1';
+
+    function getBoxes() {
+      return Array.from(document.querySelectorAll('ul.checklist input[type="checkbox"]'));
+    }
+
+    function updateProgress() {
+      const boxes = getBoxes();
+      const total = boxes.length;
+      const checked = boxes.filter(b => b.checked).length;
+      const pct = total ? Math.round((checked / total) * 100) : 0;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressCount').textContent = checked + ' / ' + total;
+
+      const completion = document.getElementById('completion');
+      if (total > 0 && checked === total) {
+        completion.classList.add('show');
+      } else {
+        completion.classList.remove('show');
+      }
+    }
+
+    function saveState() {
+      const state = {};
+      getBoxes().forEach(b => { state[b.id] = b.checked; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        getBoxes().forEach(b => {
+          if (state[b.id] !== undefined) {
+            b.checked = state[b.id];
+            b.closest('li').classList.toggle('done', b.checked);
+          }
+        });
+      } catch (e) {}
+      updateProgress();
+    }
+
+    function clearAll() {
+      if (!confirm('Clear all checkmarks?')) return;
+      getBoxes().forEach(b => {
+        b.checked = false;
+        b.closest('li').classList.remove('done');
+      });
+      saveState();
+    }
+
+    function checkAll() {
+      getBoxes().forEach(b => {
+        b.checked = true;
+        b.closest('li').classList.add('done');
+      });
+      saveState();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      getBoxes().forEach(b => {
+        b.addEventListener('change', () => {
+          b.closest('li').classList.toggle('done', b.checked);
+          saveState();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

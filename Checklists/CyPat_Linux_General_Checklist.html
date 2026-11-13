@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyPat Linux General Checklist</title>
+  <style>
+    :root {
+      --bg: #140f12;
+      --card: #1c1519;
+      --text: #f0e6e9;
+      --muted: #a8989e;
+      --accent: #c41e3a;
+      --accent-light: #3a1a22;
+      --border: #3a2a30;
+      --danger: #e11d48;
+      --warn: #d97706;
+      --success: #c41e3a;
+      --gold: #c9a227;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 0 1rem 3rem;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2a0f16, #1a0a0e 60%, #0f080a);
+      color: white;
+      padding: 1.5rem 1.5rem;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 18px rgba(196, 30, 58, 0.25);
+      border-bottom: 1px solid #4a1a24;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    header .subtitle {
+      margin: 0.35rem 0 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    nav.toc h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    nav.toc ol {
+      margin: 0;
+      padding-left: 1.25rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+
+    nav.toc a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    section h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.25rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.4rem;
+    }
+
+    section h3 {
+      margin: 1.25rem 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
+
+    .note, .warn, .important {
+      border-left: 4px solid;
+      padding: 0.6rem 0.9rem;
+      margin: 0.75rem 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+    }
+
+    .note { background: #241018; border-color: var(--accent); }
+    .warn { background: #2a1c0a; border-color: var(--warn); }
+    .important { background: #2a1018; border-color: var(--danger); font-weight: 500; }
+
+    ul.checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    ul.checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #2a1a20;
+    }
+
+    ul.checklist li:last-child { border-bottom: none; }
+
+    ul.checklist input[type="checkbox"] {
+      margin-top: 0.3rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    ul.checklist label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    ul.checklist li.done label {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    code, .cmd {
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      background: #2a1a20;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.88em;
+      color: #f0d0d8;
+    }
+
+    pre {
+      background: #0c080a;
+      color: #e8d0d6;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      border: 1px solid var(--border);
+    }
+
+    pre code { background: none; color: inherit; padding: 0; }
+
+    .cmd-list {
+      margin: 0.5rem 0 1rem;
+    }
+
+    .cmd-list dt {
+      font-weight: 600;
+      margin-top: 0.6rem;
+    }
+
+    .cmd-list dd {
+      margin: 0.15rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #1a1216;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .progress-bar .bar {
+      flex: 1;
+      height: 8px;
+      background: #2a1a20;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b1528, var(--accent));
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .progress-bar .count {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 4.5rem;
+      text-align: right;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    #completion {
+      display: none;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      padding: 1.75rem 1.5rem;
+      background: linear-gradient(180deg, #241018, #1a0e12);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      animation: popIn 0.45s ease;
+      box-shadow: 0 0 24px rgba(196, 30, 58, 0.25);
+    }
+
+    #completion.show {
+      display: block;
+    }
+
+    #completion img {
+      max-width: 220px;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    }
+
+    #completion p {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    #completion .sub {
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    button.secondary {
+      background: #2a1a20;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    button:hover { filter: brightness(1.1); }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .progress-bar, .actions, nav.toc, button { display: none !important; }
+      section { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+      header { background: #1a0a0e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      ul.checklist input { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      nav.toc ol { columns: 1; }
+      header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar">
+    <div class="bar"><div class="fill" id="progressFill"></div></div>
+    <div class="count" id="progressCount">0 / 0</div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>LINUX General Checklist</h1>
+      <p class="subtitle">Team Enkephalin · CyPat</p>
+    </header>
+
+    <div class="actions">
+      <button onclick="window.print()">Print / Save as PDF</button>
+      <button class="secondary" onclick="clearAll()">Clear all checks</button>
+      <button class="secondary" onclick="checkAll()">Check all</button>
+    </div>
+
+    <nav class="toc">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#commands">Useful List of Commands</a></li>
+        <li><a href="#initial">Initial Start</a></li>
+        <li><a href="#tldr">TL;DR Quick Path</a></li>
+        <li><a href="#forensics">Forensics</a></li>
+        <li><a href="#users">User Management</a></li>
+        <li><a href="#password">Password Configuration</a></li>
+        <li><a href="#services">Services and Such</a></li>
+        <li><a href="#software">Software and Media</a></li>
+      </ol>
+    </nav>
+
+    <div class="note">
+      <strong>How to use:</strong> Treat this as a general reminder. You can (and should) look things up when needed. Checkboxes are saved in your browser’s local storage so progress persists across refreshes. For competition, always prioritize the README and forensics questions first.
+    </div>
+
+    <!-- ==================== COMMANDS ==================== -->
+    <section id="commands">
+      <h2>Useful List of Commands</h2>
+      <p style="color:var(--muted);font-size:0.92rem;">(Courtesy of sinclair — cleaned up for clarity)</p>
+
+      <h3>Service Management</h3>
+      <dl class="cmd-list">
+        <dt><code>systemctl status service</code></dt>
+        <dd>Check the status of a service.</dd>
+        <dt><code>systemctl start service</code></dt>
+        <dd>Start a service.</dd>
+        <dt><code>systemctl stop service</code></dt>
+        <dd>Stop a service.</dd>
+        <dt><code>systemctl restart service</code></dt>
+        <dd>Restart a service.</dd>
+        <dt><code>systemctl enable service</code></dt>
+        <dd>Enable a service to start on boot.</dd>
+        <dt><code>systemctl disable service</code></dt>
+        <dd>Disable a service from starting on boot.</dd>
+        <dt><code>sudo apt install bum</code></dt>
+        <dd>On-Boot Service Manager GUI (Boot-Up Manager).</dd>
+        <dt><code>systemctl list-units --type=service --state=running</code></dt>
+        <dd>List all running services.</dd>
+        <dt><code>systemctl list-units --type=service --state=active</code></dt>
+        <dd>List all active services.</dd>
+      </dl>
+
+      <h3>Packages (updates and such)</h3>
+      <dl class="cmd-list">
+        <dt><code>sudo apt-get update</code> or <code>sudo apt update</code></dt>
+        <dd>Update current package list and prepare for download.</dd>
+        <dt><code>sudo apt-get upgrade</code> or <code>sudo apt upgrade</code></dt>
+        <dd>Upgrade (download and install) currently installed packages.</dd>
+        <dt><code>sudo apt-get install package</code></dt>
+        <dd>Install a specific new package.</dd>
+        <dt><code>sudo apt-get remove package</code> / <code>sudo apt purge package</code></dt>
+        <dd>Remove a package (purge also removes config files).</dd>
+      </dl>
+
+      <h3>User Management</h3>
+      <dl class="cmd-list">
+        <dt><code>adduser username</code> / <code>sudo adduser username</code></dt>
+        <dd>Create a new user (interactive, creates home directory).</dd>
+        <dt><code>deluser username</code> / <code>sudo deluser --remove-home username</code></dt>
+        <dd>Delete a user (optionally remove home directory).</dd>
+        <dt><code>passwd username</code> / <code>sudo passwd username</code></dt>
+        <dd>Change a user’s password.</dd>
+        <dt><code>usermod -a -G group username</code></dt>
+        <dd>Add user to a group (append).</dd>
+        <dt><code>sudo gpasswd -d username groupname</code></dt>
+        <dd>Remove a user from a group.</dd>
+      </dl>
+
+      <p>Other common commands can be discovered online. Linux’s open-source nature means good documentation is almost always available.</p>
+    </section>
+
+    <!-- ==================== INITIAL START ==================== -->
+    <section id="initial">
+      <h2>Initial Start</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="i1">
+          <label for="i1">Be prepared — remember you can use the Internet.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i2">
+          <label for="i2">Confirm the correct team ID (this should already be known).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i3">
+          <label for="i3"><strong>Read the VM README first.</strong> Important!!!!!</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i4">
+          <label for="i4">Start with forensics first to avoid issues later. You can use Google and AI carefully, but be careful.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i5">
+          <label for="i5">Take notes throughout the process. Record commands used, created/disabled users, and important changes. Use a virtual notepad, spreadsheet, or similar. Not completely necessary but useful for keeping track.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="i6">
+          <label for="i6"><em>Additional:</em> Take a snapshot (or note the current state) before making large changes so you can roll back if something breaks.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== TL;DR ==================== -->
+    <section id="tldr">
+      <h2>Linux Time, HAIL TUX — TL;DR?</h2>
+      <div class="warn">
+        <strong>All right, you’re lazy.</strong> Here’s the high-level path. Still read the detailed sections.
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1">
+          <label for="t1">README first.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t2">
+          <label for="t2">Change users and groups, disable, add, edit.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t3">
+          <label for="t3">Add or change passwords.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t4">
+          <label for="t4">Password policies should be fixed.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t5">
+          <label for="t5">Change system / security policies.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t6">
+          <label for="t6">Enable / disable necessary services.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t7">
+          <label for="t7">Secure software by updating / removing / configuring them.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t8">
+          <label for="t8">Remove bad programs and media.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="t9">
+          <label for="t9">Run updates during lunch (or when you have breathing room).</label>
+        </li>
+      </ul>
+      <div class="important">
+        <strong>*** IMPORTANT FOR LINUX ***</strong><br>
+        Please do not update packages during your active work if you can avoid it — you may cause issues with running services or the scoring environment. Prefer to update at a controlled time.
+      </div>
+    </section>
+
+    <!-- ==================== FORENSICS ==================== -->
+    <section id="forensics">
+      <h2>Forensics</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="f1">
+          <label for="f1">Use <code>ls -la</code> (and explore home directories, /tmp, /var/tmp, etc.).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f2">
+          <label for="f2">Check logs at <code>/var/log/</code>. You can use <code>cat</code>, <code>less</code>, <code>grep</code>, or a text editor like <code>vim</code> / <code>nano</code>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f3">
+          <label for="f3">Yes, you will have to look at system processes and network activity (<code>ps aux</code>, <code>ss -tulnp</code> / <code>netstat</code>, <code>lsof</code>).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f4">
+          <label for="f4"><em>Additional:</em> Check user crontabs and system cron directories (<code>/etc/cron*</code>, <code>/var/spool/cron/crontabs/</code>) for suspicious jobs.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="f5">
+          <label for="f5"><em>Additional:</em> Look for recently modified or suspicious files with <code>find</code> (e.g. large files, SUID binaries, files in /tmp or home directories).</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== USER MANAGEMENT ==================== -->
+    <section id="users">
+      <h2>User Management</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="u1">
+          <label for="u1">Check user list against the README.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u2">
+          <label for="u2">Use <code>sudo deluser</code> or <code>sudo adduser</code> to remove or add users as needed.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u3">
+          <label for="u3"><code>sudo cat /etc/passwd</code> (or <code>getent passwd</code>) for seeing all users.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u4">
+          <label for="u4"><code>sudo getent group sudo</code> (or <code>getent group adm</code> / <code>wheel</code>) for users in the admin / sudo group.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u5">
+          <label for="u5">Remove or add admin permissions as necessary.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u6">
+          <label for="u6">All users need to have a secure password:
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li>Uppercase letter</li>
+              <li>Lowercase letter</li>
+              <li>Number</li>
+              <li>Special character</li>
+            </ul>
+            README has admin passwords. Use <code>sudo passwd username</code> to change.
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="u7">
+          <label for="u7"><em>Additional:</em> Check for UID 0 accounts other than root, locked accounts, and empty password fields in <code>/etc/shadow</code>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="u8">
+          <label for="u8"><em>Additional:</em> Review <code>/etc/group</code> and remove unauthorized users from privileged groups.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== PASSWORD CONFIG ==================== -->
+    <section id="password">
+      <h2>Password Configuration &amp; Related Hardening</h2>
+
+      <h3>Password Policy</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p1">
+          <label for="p1">Check the README for actual requirements!!!</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p2">
+          <label for="p2">Follow password requirements as stated above (complexity + length).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p3">
+          <label for="p3">Config file is <code>/etc/pam.d/common-password</code>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p4">
+          <label for="p4">Add <code>minlen=12 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1</code> to the end of the <code>pam_pwquality.so</code> or <code>pam_unix.so</code> line. (Prefer installing <code>libpam-pwquality</code> and using the pwquality line.)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p5">
+          <label for="p5"><code>sudo nano /etc/login.defs</code> to edit more configs:
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li><code>PASS_MAX_DAYS 90</code></li>
+              <li><code>PASS_MIN_DAYS 7</code></li>
+              <li><code>PASS_WARN_AGE 7</code></li>
+            </ul>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="p6">
+          <label for="p6"><em>Additional:</em> Apply aging to existing users with <code>chage</code> (e.g. <code>sudo chage -M 90 -m 7 -W 7 username</code>).</label>
+        </li>
+      </ul>
+
+      <h3>Guest Account &amp; Display Manager</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p7">
+          <label for="p7">Disable Guest Account, depending on display manager.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p8">
+          <label for="p8">Generally use <code>cat /etc/X11/default-display-manager</code> to check display manager. Usually LightDM. Search if not.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p9">
+          <label for="p9">If LightDM, create / edit config with <code>sudo nano /etc/lightdm/lightdm.conf</code>.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p10">
+          <label for="p10">Set <code>allow-guest=false</code> and then <code>sudo systemctl restart lightdm</code> (will log you out — be ready).</label>
+        </li>
+      </ul>
+
+      <h3>Sysctl / Network Hardening</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p11">
+          <label for="p11">Enable IPv4 TCP SYN cookies:
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li><code>sudo nano /etc/sysctl.conf</code></li>
+              <li><code>net.ipv4.tcp_syncookies=1</code> must be set or added</li>
+            </ul>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="p12">
+          <label for="p12">Find a base / known-good version of <code>sysctl.conf</code> before editing it to make it more secure!</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p13">
+          <label for="p13"><em>Additional common sysctl values (add carefully):</em>
+            <pre><code>net.ipv4.ip_forward = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.all.log_martians = 1</code></pre>
+            Then run <code>sudo sysctl -p</code>.
+          </label>
+        </li>
+      </ul>
+
+      <h3>File Permissions &amp; Browser</h3>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="p14">
+          <label for="p14">Check file permissions with <code>ls -l</code>. Critical files (e.g. <code>/etc/shadow</code>, <code>/etc/gshadow</code>) should typically be <code>-rw-r-----</code> or tighter (often <code>640</code> or <code>600</code>).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p15">
+          <label for="p15">If not, use <code>sudo chmod 640 filepath</code> (or appropriate mode) to correct them. Be careful with ownership too (<code>chown root:shadow</code> etc.).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="p16">
+          <label for="p16">Secure browser by turning on settings that block dangerous content (pop-ups, unsafe downloads, tracking, etc.).</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section id="services">
+      <h2>Services and Such</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="s1">
+          <label for="s1">Remove malware like rootkits, ransomware, viruses, etc. Use tools such as ClamAV, chkrootkit, rkhunter; update definitions; restore from backups if needed.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s2">
+          <label for="s2">Check that the firewalls are running well.
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li><code>iptables</code> or <code>firewalld</code> / preferably <strong>UFW</strong></li>
+              <li>Secure SSH through <code>/etc/ssh/sshd_config</code></li>
+              <li>Disable unused services</li>
+              <li>Regularly update and patch the system (e.g. <code>sudo apt update</code> then <code>sudo apt upgrade</code> at a safe time)</li>
+              <li>Backup often</li>
+            </ul>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="s3">
+          <label for="s3">Check malicious Crontab entries (often suspicious Python or shell scripts).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s4">
+          <label for="s4">README has critical services — do not disable those.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s5">
+          <label for="s5">Install UFW for firewall if needed and start/enable it:
+            <pre><code>sudo apt install ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh   # only if SSH is required
+sudo ufw enable
+sudo ufw status verbose</code></pre>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="s6">
+          <label for="s6">Edit config files like SSH, FTP, and LightDM. Look at your team notes (e.g. “linux week 8.md”) for example configs.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s7">
+          <label for="s7">Check <code>/etc/sudoers</code> and <code>/etc/sudoers.d/</code> and make sure values look like defaults / match README. Use <code>visudo</code> (or <code>sudo visudo</code>) — nano alone is not safe for sudoers. More info in your notes.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="s8">
+          <label for="s8"><em>Additional (SSH hardening if SSH is present):</em>
+            Common secure settings in <code>/etc/ssh/sshd_config</code>:
+            <pre><code>PermitRootLogin no
+PasswordAuthentication yes   # or no if keys only
+PermitEmptyPasswords no
+Protocol 2
+MaxAuthTries 3-4
+X11Forwarding no
+AllowUsers  (list only authorized users if desired)</code></pre>
+            Test with <code>sudo sshd -t</code> then restart the service.
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="s9">
+          <label for="s9"><em>Additional:</em> List listening ports with <code>ss -tulnp</code> or <code>lsof -i -P -n</code> and investigate anything unexpected.</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==================== SOFTWARE & MEDIA ==================== -->
+    <section id="software">
+      <h2>Software and Media</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="m1">
+          <label for="m1">Use <code>sudo apt list --installed</code> (or <code>dpkg -l</code>) for installed packages.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m2">
+          <label for="m2">Delete packages with <code>sudo apt purge package</code> (preferred over plain remove).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m3">
+          <label for="m3">Hacking / prohibited tools such as:
+            <ul style="margin:0.4rem 0 0 1.2rem; list-style:disc;">
+              <li>Hydra</li>
+              <li>Deluge</li>
+              <li>Wireshark</li>
+              <li>Ophcrack</li>
+              <li>John the Ripper</li>
+              <li>nmap / zenmap</li>
+              <li>netcat, nikto, aircrack-ng, etc.</li>
+            </ul>
+            Should be deleted unless the README explicitly requires them.
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="m4">
+          <label for="m4">Make sure to update and THEN upgrade package lists, auto-remove unused packages, and reboot after if needed:
+            <pre><code>sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo apt autoclean</code></pre>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="m5">
+          <label for="m5">Turn on automatic update checks in the Update / Software &amp; Updates app (or configure unattended-upgrades carefully).</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m6">
+          <label for="m6">Delete media files, ZIP files, and other unauthorized content. Use <code>sudo rm</code> / <code>find</code> carefully if needed. Common places: home directories, /tmp, /var/tmp, Downloads, Desktop.</label>
+        </li>
+        <li>
+          <input type="checkbox" id="m7">
+          <label for="m7"><em>Additional:</em> After removing packages, run <code>sudo apt autoremove --purge</code> and check for leftover config directories.</label>
+        </li>
+      </ul>
+    </section>
+
+    <div id="completion">
+      <img src="team_enkephalin.png" alt="Team Enkephalin celebration">
+      <p>dammmm!</p>
+      
+    </div>
+
+    <footer>
+      <p>CyPat Linux General Checklist — Team Enkephalin // P-9</p>
+      <p>Always verify against the current competition README and scoring categories. Hail Tux.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Simple localStorage persistence + progress bar
+    const STORAGE_KEY = 'cypat-linux-checklist-v1';
+
+    function getBoxes() {
+      return Array.from(document.querySelectorAll('ul.checklist input[type="checkbox"]'));
+    }
+
+    function updateProgress() {
+      const boxes = getBoxes();
+      const total = boxes.length;
+      const checked = boxes.filter(b => b.checked).length;
+      const pct = total ? Math.round((checked / total) * 100) : 0;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressCount').textContent = checked + ' / ' + total;
+
+      const completion = document.getElementById('completion');
+      if (total > 0 && checked === total) {
+        completion.classList.add('show');
+      } else {
+        completion.classList.remove('show');
+      }
+    }
+
+    function saveState() {
+      const state = {};
+      getBoxes().forEach(b => { state[b.id] = b.checked; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        getBoxes().forEach(b => {
+          if (state[b.id] !== undefined) {
+            b.checked = state[b.id];
+            b.closest('li').classList.toggle('done', b.checked);
+          }
+        });
+      } catch (e) {}
+      updateProgress();
+    }
+
+    function clearAll() {
+      if (!confirm('Clear all checkmarks?')) return;
+      getBoxes().forEach(b => {
+        b.checked = false;
+        b.closest('li').classList.remove('done');
+      });
+      saveState();
+    }
+
+    function checkAll() {
+      getBoxes().forEach(b => {
+        b.checked = true;
+        b.closest('li').classList.add('done');
+      });
+      saveState();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      getBoxes().forEach(b => {
+        b.addEventListener('change', () => {
+          b.closest('li').classList.toggle('done', b.checked);
+          saveState();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
