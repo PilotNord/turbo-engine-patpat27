@@ -1,23 +1,29 @@
 <p align="center">
-  <img alt="enkephalin, drink" src="https://img.shields.io/badge/Enkephalin-smth-1f6feb?style=for-the-badge&logo=github">
+  <img alt="Enkephalin" src="https://img.shields.io/badge/ENKEPHALIN-f5b800?style=for-the-badge&labelColor=111111&logo=github&logoColor=f5b800">
 </p>
 
-<h1 align="center">Enkephalin // P-9</h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PilotNord/turbo-engine-patpat27/main/enkpehalin.webp" alt="Enkephalin mascot" width="260" />
+</p>
+
+<h1 align="center">✦ Enkephalin // P-9 ✦</h1>
 
 <p align="center">
+  <em>enkepehalllin, yummers</em>
+</p>
+
+<p align="center">
+  <img alt="Brain fluid" src="https://img.shields.io/badge/brain_fluid-yeaahaha-b3261e?style=flat-square&labelColor=111111">
+  <img alt="Computers" src="https://img.shields.io/badge/computers-also_good-f5b800?style=flat-square&labelColor=111111">
   <a href="https://en.wikipedia.org/wiki/Enkephalin" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Wikipedia-Enkephalin-3366CC?style=for-the-badge&logo=wikipedia&logoColor=white" alt="Enkephalin on Wikipedia" />
+    <img src="https://img.shields.io/badge/wikipedia-enkephalin-3366CC?style=flat-square&labelColor=111111&logo=wikipedia&logoColor=white" alt="Enkephalin on Wikipedia" />
   </a>
 </p>
 
+<p align="center">◆ ━━━━━━━━━━━━━━━━━━━━ ◆</p>
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PilotNord/turbo-engine-patpat27/main/enkpehalin.webp" alt="Enkephalin mascot" width="240" />
+  We love computers and brain fluid, huzzah!
 </p>
 
-<p align="center"><small><em>enkepehalllin, yummers</em></small></p>
-
-<p align="center">CyberPatriots checklist / repo for 2026–2027.</p>
-
-
-### About
-We love computer and brain fluid, huzzah!
+<p align="center">◆ ━━━━━━━━━━━━━━━━━━━━ ◆</p>
