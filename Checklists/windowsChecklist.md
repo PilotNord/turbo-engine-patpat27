@@ -14,20 +14,21 @@ Tick stuff off mentally since GitHub is not good for that :p
 - [ ] Confirm the correct team ID (this should already be known).
 - [ ] Read the VM README first.
   - Important!!!!!
-- [ ] Start with forensics first to avoid issues later.
+- [ ] Start with forensics first to avoid issues later. They have useful info, so use it.
   - You can use Google and AI carefully, but be careful
 - [ ] Take notes throughout the process.
   - Record commands used, created/disabled users, and important changes.
   - Use a virtual notepad, spreadsheet, or similar
-  - Not completely necessary but useful for keeping track
+  - Not completely necessary BUT useful for keeping track
 
 ## Windows Time, I love Bill Gates.
 
 ### TL;DR?
 - [ ] *All right, you're lazy.*
 - [ ] README first.
+- [ ] Do Forensics and download EVT (Everything Void Tools)
 - [ ] Change users and groups, disable, add, edit.
-- [ ] Add or change passes
+- [ ] Add or change passwords
 - [ ] Password policies should be fixed
 - [ ] Change system, security policies
 - [ ] Enable/disable necessary services
