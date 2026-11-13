@@ -1,6 +1,5 @@
 # Windows Server time!!!
 # 11/9: Week 9
-# Reminder
 ## More Forensics Examples
 - Most Forensics are low-key easy IF you search w/google correctly
 - DELETE ANYTHING MALICIOUS AFTER FORENSICS IS COMPLETE
@@ -14,7 +13,7 @@ A .exe file makes a goose run around. What is the absolute path to it?
 - Malwarebytes: can help identify bad things; niche and will flag scoring system; DO NOT DELETE
 - TCPView: allows users to close connections manually and is useful for identifying remote access points on a VM
 - Sigcheck: checks if files have a valid digital signature
-Commands:
+Commands for Sigcheck:
 1. Sigcheck.exe C:\path\file.exe - check
 2. Sigcheck -u -e C:\Users - lists .exe
 3. sigcheck -h file.exe - shows hashes
@@ -92,14 +91,14 @@ By default, all machines that are on a domain will be put in a container called 
 - scope says which users and where: Local, Domain Local, Global, Universal
 - global is what we focus on
 IMPORTANT GROUPS
-Domain Admins
-- admin over domain
-Server Operators
-- Administer DCs
-Backup Operators
-- Access any file ignoring permissions
-- perform data backups
-Account Operators
-- create/modify other accounts in domain
-Domain users/computers/controllers
-- existing users, computers, DCs on domain
+- Domain Admins
+admin over domains
+- Server Operators
+  Administer DCs
+- Backup Operators
+  Access any file ignoring permissions
+  perform data backups
+- Account Operators
+  create/modify other accounts in domain
+- Domain users/computers/controllers
+  existing users, computers, DCs on domain
