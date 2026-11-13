@@ -39,8 +39,8 @@
 ## Securing servers
 - in cyberpatriot, common server types are FTP (vsftpd), SSH, and Apache2
 - edit config files!
-- SSH - `/etc/sshd/ssh_config`
-- ftp - `/etc/vsftpd.conf`
+- SSH - `/etc/ssh/sshd/ssh_config`
+- ftp - `/etc/vsftpd/vsftpd.conf`
 - Apache2 - `/etc/apache2/apache2.conf`
 - only secure critical services, otherwise delete that shi
 ### look for 
