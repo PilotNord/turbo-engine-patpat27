@@ -1,3 +1,5 @@
+# Tested in Round II, WORKS
+
 #!/usr/bin/env bash
 # Go through every normal user one by one: set preset password, delete, or skip.
 # Run with: sudo bash user_audit.sh
