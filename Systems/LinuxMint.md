@@ -61,7 +61,7 @@
 
 ## Updates
 - Updates doing nothing? Suspicious.
-- Use Software Sources app to restore default settings for Official Repositories.
+- Use Software Sources app (or `/etc/apt/sources.list`) to restore default settings for Official Repositories.
 - Update package lists: `sudo apt update -y`
 - Update packages: `sudo apt upgrade -y`
 
